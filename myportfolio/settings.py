@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'ckeditor',
-    'admin_honeypot',
     'storages',
 ]
 
