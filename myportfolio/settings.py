@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'ckeditor',
+    'admin_honeypot',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'myportfolio.urls'
@@ -126,8 +129,13 @@ STATICFILES_DIRS = [
 	'myportfolio/static',
 ]
 
+# Simplified static file serving
+# https://warehouse.python.org/project/whitenoise
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "mediafiles"
+
 
 # Email configuration
 EMAIL_HOST = 'smtp.gmail.com'
@@ -135,6 +143,15 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'sendemailwithdjango@gmail.com'
 EMAIL_HOST_PASSWORD = 'fniwunzztsglrorm'
 EMAIL_USE_TLS = True
+
+AWS_ACCESS_KEY_ID = 'AKIA445MZD6YMB3CIYXF'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'my-portfolio-files'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
